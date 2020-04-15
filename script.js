@@ -1,44 +1,43 @@
 const menus=[];
 // STEP 1 - Define your page variable
- page = 0;
+ let page = 0;
 // STEP 2 - Define all your querySelector variables that you'll need to display all info.
 // Consider using embedded objects that allows you use salad.title and salad.price to access the DOM elements
-const h2 = document.querySelector("#menutitle");
+const menuTitle = document.querySelector("#menutitle");
 const nextBtn = document.querySelector("#nextMenu");
 const prevBtn = document.querySelector('#previousMenu');
-const div1 = document.querySelector("div.panel1 h1");
-const p1 = document.querySelector('div.panel1 p')
-const div2 = document.querySelector('div.panel2 h1');
-const p2 = document.querySelector('div.panel2 p')
-const div3 = document.querySelector('div.panel3 h1');
-const p3 = document.querySelector('div.panel3 p')
-const div4 = document.querySelector('div.panel4 h1');
-const p4 = document.querySelector('div.panel4 p');
-
-async function getMenus() {
-  const jsona = await fetch(
-    "https://gist.githubusercontent.com/avcoder/0de79329fdfec90a62e968a43865fc04/raw/4de44757059396a0fb66789b8223ae33a1109fa8/menu.json"
-  );
-  const data = await jsona.json();
-  menus.push(...data);
-  display();
-}
-
+const soup = document.querySelector("div.panel1 h1");
+const soupPrice = document.querySelector('div.panel1 p')
+const salad = document.querySelector('div.panel2 h1');
+const saladPrice = document.querySelector('div.panel2 p')
+const lighterFare = document.querySelector('div.panel3 h1');
+const lighterFarePrice = document.querySelector('div.panel3 p')
+const entree = document.querySelector('div.panel4 h1');
+const entreePrice = document.querySelector('div.panel4 p');
 
 // STEP 3 - Define a function called display that accepts a parameter called todaysmenu (Which is an object)
 // The function will display all prices and menu items based off of todaysmenu via your querySelector variables defined above
-function display(){
+function display(menu1){
   
-   h2.textContent = menus[page].title;
-  div1.textContent = menus[page].soup;
-  p1.textContent = menus[page].soupPrice;
-  div2.textContent = menus[page].salad;
-p2.textContent = menus[page].saladPrice;
-  div3.textContent = menus[page].lighterFare;
-  p3.textContent = menus[page].lighterFarePrice;
-  div4.textContent = menus[page].entree;  
-  p4.textContent = menus[page].entreePrice;
-}
+    menuTitle.textContent = menus[page].title;
+    soup.textContent = menus[page].soup;
+    soupPrice.textContent = menus[page].soupPrice;
+    salad.textContent = menus[page].salad;
+    saladPrice.textContent = menus[page].saladPrice;
+    lighterFare.textContent = menus[page].lighterFare;
+    lighterFarePrice.textContent = menus[page].lighterFarePrice;
+    entree.textContent = menus[page].entree;  
+    entreePrice.textContent = menus[page].entreePrice;
+  }
+  async function getMenus() {
+    const jsonf = await fetch(
+      "https://gist.githubusercontent.com/avcoder/0de79329fdfec90a62e968a43865fc04/raw/4de44757059396a0fb66789b8223ae33a1109fa8/menu.json"
+    );
+    const data = await jsonf.json();
+    menus.push(...data);
+    display();
+  }
+  
 getMenus();
 
 // STEP 4 - Create a function called next, that will increment your page counter by 1,
